@@ -1,26 +1,3 @@
-// const mongoose = require("mongoose");
-// const jwt = require("jsonwebtoken");
-
-// const userSchema = new mongoose.Schema({
-//   email: {
-//     type: String,
-//     required: true,
-//     unique: true
-//   },
-//   password: {
-//     type: String,
-//     required: true
-//   }
- 
-// });
-
-// userSchema.methods.generateAuthToken = async function () {
-//   const token = await jwt.sign({ _id: this._id }, process.env.SECRET);
-//   return token;
-// };
-
-// module.exports.userModel = mongoose.model("User", userSchema);
-
 
 const { DataTypes, Model } = require("sequelize");
 const jwt = require("jsonwebtoken");
@@ -42,6 +19,13 @@ User.init(
       allowNull: false,
       unique: true
     },
+    firstName: { 
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    lastName: { 
+      type: DataTypes.STRING,
+      allowNull: false},
     password: {
       type: DataTypes.STRING,
       allowNull: false

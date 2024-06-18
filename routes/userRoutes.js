@@ -3,22 +3,22 @@ const router = express.Router();
 
 const { createUser, loginUser } = require("../controllers/userController");
 const {
-  createEmployee,
-  getAllEmployee,
-  getEmployeeById,
-  deleteEmployeeById,
-  updateEmployeeById
-} = require("../controllers/employeeController");
+  createBook,
+  getAllBooks,
+  getBookById,
+  deleteBookById,
+  updateBookById
+} = require("../controllers/bookController");
 
 // Importing auth as a default import
 const auth = require("../controllers/auth");
 
 router.post("/user/create", createUser); // Add leading slash '/'
 router.post("/user/login", loginUser); // Add leading slash '/'
-router.post("/create/employee", auth, createEmployee);
-router.get("/all/employees", auth, getAllEmployee);
-router.get("/:id/employees", auth, getEmployeeById);
-router.delete("/delete/employee/:id", auth, deleteEmployeeById);
-router.patch("/update/employee/:id", auth, updateEmployeeById);
+router.post("/create/book", auth, createBook);
+router.get("/all/books", auth, getAllBooks);
+router.get("/:id/books", auth, getBookById);
+router.delete("/delete/book/:id", auth, deleteBookById);
+// router.patch("/book/:id", auth, updatebookById);
 
 module.exports.userRoutes = router;

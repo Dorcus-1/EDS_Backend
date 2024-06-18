@@ -5,7 +5,8 @@ function validateUser(user) {
     const userSchema =Joi.object({
         email:Joi.string().required().email(),
         password:password_complexity(),
-        confirmPassword:password_complexity()
+        firstName:Joi.string().required(),
+        lastName:Joi.string().required(),
  
     })
 

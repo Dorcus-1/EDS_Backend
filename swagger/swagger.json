@@ -1,8 +1,8 @@
 {
     "swagger": "2.0",
     "info": {
-       "title": "Rest_FULL",
-       "description": "Rest_FULL API Documentation",
+       "title": "Library_Service",
+       "description": "Library_Service API Documentation",
        "termsOfService": "http://swagger.io/terms/",
        "contact": {
           "name": "API Support",
@@ -48,9 +48,13 @@
                       "password": {
                          "type": "string"
                       },
-                      "confirmPassword": {
-                         "type": "string"
-                      }
+                     "firstName":{
+                        "type":"string"
+                     },
+                     
+                     "lastName":{
+                           "type":"string"
+                        }
                       
                      }
                    }
@@ -159,13 +163,13 @@
              ]
           }
        },
-       "/create/employee": {
+       "/create/book": {
           "post": {
              "tags": [
-                "employee"
+                "book"
              ],
              "summary": "",
-             "description": "Create Employee",
+             "description": "Create Book",
              "parameters": [
              {
                 "in": "body",
@@ -173,36 +177,22 @@
                    "required": true,
                    "schema": {
                    "properties": {
-            "firstName": {
+            "name": {
               "type": "string"
            },
-           "lastName": {
+           "author": {
               "type": "string"
            },
-           "email": {
+           "publisher": {
               "type": "string"
            },
-           "nationalId": {
-              "type": "string"
+           "publicationYear": {
+              "type":"string"
            },
-           "telephone": {
+           "subject": {
               "type": "string"
-           },
-           "department": {
-              "type": "string"
-           },
-           "position": {
-            "type": "string"
-         },
-          "laptopManufacturer": {
-            "type": "string"
-         },
-          "model": {
-            "type": "string"
-         },
-          "serialNumber": {
-            "type": "string"
-         }
+           }
+        
           }
                    }
              }
@@ -218,36 +208,22 @@
                    "description": "Created",
                    "schema": {
                      "properties": {
-            "firstName": {
-              "type": "string"
-           },
-           "lastName": {
-              "type": "string"
-           },
-           "email": {
-              "type": "string"
-           },
-           "nationalId": {
-              "type": "string"
-           },
-           "telephone": {
-              "type": "string"
-           },
-           "department": {
-              "type": "string"
-           },
-           "position": {
-            "type": "string"
-         },
-          "laptopManufacturer": {
-            "type": "string"
-         },
-          "model": {
-            "type": "string"
-         },
-          "serialNumber": {
-            "type": "string"
-         }
+                        "name": {
+                           "type": "string"
+                        },
+                        "author": {
+                           "type": "string"
+                        },
+                        "publisher": {
+                           "type": "string"
+                        },
+                        "publicationYear": {
+                           "type":"string"
+                        },
+                        "subject": {
+                           "type": "string"
+                        }
+                     
           }
                    }
                 },
@@ -274,13 +250,13 @@
              ]
           }
        },
-        "/all/employees": {
+        "/all/books": {
         "get": {
            "tags": [
-              "employee"
+              "book"
            ],
-           "summary": "Get all employees",
-           "description": "Retrieve a list of all employees",
+           "summary": "Get all books",
+           "description": "Retrieve a list of all books",
            "parameters": [],
            "consumes": [
               "application/json"
@@ -290,11 +266,11 @@
            ],
            "responses": {
               "200": {
-                 "description": "Retrieve a list of all employees",
+                 "description": "Retrieve a list of all books",
                  "schema": {
                     "type": "array",
                     "items": {
-                       "$ref": "#/definitions/Employee"
+                       "$ref": "#/definitions/Book"
                     }
                  }
               },
@@ -320,147 +296,9 @@
            ]
         }
      }
-     ,
-      "/employees/{employeeId}": {
-        "get": {
-          "tags": ["employee"],
-          "summary": "Get employee by ID",
-          "description": "Retrieve details of a specific employee by ID",
-          "parameters": [
-            {
-              "name": "employeeId",
-              "in": "path",
-              "description": "ID of the employee",
-              "required": true,
-              "type": "string"
-            }
-          ],
-          "produces": ["application/json"],
-          "responses": {
-            "200": {
-              "description": "Retrieve employee details",
-              "schema": {
-               "properties": {
-                  "message": {
-                     "type": "string"
-                  },
-                  "appointment": {
-                     "type": "object",
-                    "properties": {
-            "firstName": {
-              "type": "string"
-           },
-           "lastName": {
-              "type": "string"
-           },
-           "email": {
-              "type": "string"
-           },
-           "nationalId": {
-              "type": "string"
-           },
-           "telephone": {
-              "type": "string"
-           },
-           "department": {
-              "type": "string"
-           },
-           "position": {
-            "type": "string"
-         },
-          "laptopManufacturer": {
-            "type": "string"
-         },
-          "model": {
-            "type": "string"
-         },
-          "serialNumber": {
-            "type": "string"
-         }
-          }
-                  }
-               }
-            }
-              
-            },
-            "404": {
-              "description": "employee not found",
-              "content": {
-                "application/json": {
-                  "example": {
-                    "error": "employee not found"
-                  }
-                }
-              }
-            },
-            "500": {
-              "description": "Internal Server Error",
-              "content": {
-                "application/json": {
-                  "example": {
-                    "error": "Internal Server Error"
-                  }
-                }
-              }
-            }
-          },
-          "security": [
-            {
-              "Bearer": []
-            }
-          ]
-        }
-      },
-    
-       "/employee-delete/{id}": {
-         "delete": {
-            "tags": [
-               "employee"
-            ],
-            "summary": "",
-            "description": "delete employee",
-            "parameters": [
-               {
-                  "in": "path",
-                  "name": "id",
-                  "required": true,
-                  "type": "string"
-               }
-               
-            ],
-            "consumes": [
-               "application/json"
-            ],
-            "produces": [
-               "application/json"
-            ],
-            "responses": {
-               "200": {
-                  "description": "OK",
-                  "schema": {
-                     "type": "object",
-                     "properties": {
-                        "deleted": {
-                           "type": "boolean",
-                           "example": true
-                        }
-                     }
-                  }
-               },
-               "500": {
-                  "description": "Internal Server Error"
-               }
-            },
-            "security": [
-               {
-                  "Bearer": [
-                     "global"
-                  ]
-               }
-            ]
-         }
-      }
-
+     
+     
+     
      },
     
     "definitions": {
@@ -475,50 +313,40 @@
        },
        "User": {
           "properties" : {
-                             "email": {
-                                "type": "string"
-                             },
-                             "password": {
-                                "type": "string"
-                             },
-                             "confirmPassword": {
-                                "type": "string"
-                             }
+            "email": {
+               "type": "string"
+            },
+            "password": {
+               "type": "string"
+            },
+           "firstName":{
+              "type":"string"
+           },
+           
+           "lastName":{
+                 "type":"string"
+              }
+            
                             }
        },
        
-       "Employee": {
+       "Book": {
           "properties": {
-            "firstName": {
-              "type": "string"
-           },
-           "lastName": {
-              "type": "string"
-           },
-           "email": {
-              "type": "string"
-           },
-           "nationalId": {
-              "type": "string"
-           },
-           "telephone": {
-              "type": "string"
-           },
-           "department": {
-              "type": "string"
-           },
-           "position": {
-            "type": "string"
-         },
-          "laptopManufacturer": {
-            "type": "string"
-         },
-          "model": {
-            "type": "string"
-         },
-          "serialNumber": {
-            "type": "string"
-         }
+            "name": {
+               "type": "string"
+            },
+            "author": {
+               "type": "string"
+            },
+            "publisher": {
+               "type": "string"
+            },
+            "publicationYear": {
+               "type":"string"
+            },
+            "subject": {
+               "type": "string"
+            }
           }
        }
        
